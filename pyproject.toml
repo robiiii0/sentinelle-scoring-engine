@@ -1,0 +1,37 @@
+[tool.ruff]
+# Configuration globale
+line-length = 88
+exclude = [".git", "__pycache__", "venv", "tests/fixtures"]
+target-version = "py310"
+
+# --- Outils de Linting et de Formatage (Ruff) ---
+[tool.ruff.lint]
+# Sélection des règles strictes pour le Quality Gate
+select = [
+    "E", "W", "I", "D", "N", "C90", "SIM", "F",
+]
+
+[tool.ruff.lint.pydocstyle]
+# Convention de documentation professionnelle
+convention = "google" 
+
+[tool.ruff.lint.mccabe]
+# Limite la complexité cyclomatique pour assurer la maintenabilité
+max-complexity = 10 
+
+# --- Configuration des Tests (Pytest) ---
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+# Ciblage du module pour les rapports de couverture
+source = ["scoring_engine"] 
+
+# --- Vérification de Typage Statique (MyPy) ---
+[tool.mypy]
+# Fichiers sources à vérifier
+files = ["scoring_engine.py"] 
+# Activation du mode strict
+strict = true 
+disallow_untyped_defs = true 
