@@ -1,4 +1,5 @@
 """Moteur de scoring de base pour le projet Sentinelle."""
+
 from typing import Any, Dict, NamedTuple
 
 CRITICAL_THRESHOLD = 0.85
@@ -48,9 +49,9 @@ def score_data(data: Dict[str, Any]) -> ScoringResult:
     if risk >= CRITICAL_THRESHOLD:
         status = "CRITICAL_ALERT"
         message = (
-    f"Risk score ({risk:.2f}) exceeds critical threshold "
-    f"({CRITICAL_THRESHOLD})."
-)
+            f"Risk score ({risk:.2f}) exceeds critical threshold "
+            f"({CRITICAL_THRESHOLD})."
+        )
     elif risk >= 0.5:
         status = "MINOR_WARNING"
         message = f"Risk score ({risk:.2f}) indicates potential issue."
@@ -61,7 +62,7 @@ def score_data(data: Dict[str, Any]) -> ScoringResult:
     return ScoringResult(risk_score=risk, status=status, message=message)
 
 
-if __name__ == "__main__": # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     critical_case = {"activity_score": 0.9, "suspicion_level": 0.95}
     result = score_data(critical_case)
     print(f"Scoring Result: {result.status} (Score: {result.risk_score:.2f})")
